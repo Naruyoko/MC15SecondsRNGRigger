@@ -1,0 +1,17 @@
+[
+{
+  "modid": "mc15secondsrngrigger",
+  "name": "15 Seconds RNG Rigger Mod",
+  "description": "Rigs the RNG for 15 Seconds Minecraft map, so TAS can be played consistently.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Naruyoko"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": [],
+  "modLanguage": "java"
+}
+]

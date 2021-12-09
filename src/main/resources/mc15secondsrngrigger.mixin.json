@@ -1,0 +1,11 @@
+{
+	"required": true,
+    "minVersion": "0.7.10",
+	"package": "com.github.naruyoko.mc15secondsrngrigger.mixin",
+	"refmap": "mixins.mc15secondsrngrigger.refmap.json",
+	"compatibilityLevel": "JAVA_8",
+	"mixins": [
+		"MixinEntityAIMoveTowardsRestriction",
+		"MixinEntityAIWander"
+	]
+}
