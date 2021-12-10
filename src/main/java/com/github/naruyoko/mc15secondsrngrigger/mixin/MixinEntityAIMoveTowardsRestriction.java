@@ -17,7 +17,7 @@ public abstract class MixinEntityAIMoveTowardsRestriction extends EntityAIBase {
     @Inject(method="startExecuting",cancellable=true,at=@At("HEAD"))
     public void calcelAIForHorse(CallbackInfo ci) {
         //Level 15
-        if (this.theEntity instanceof EntityHorse&&1697<this.theEntity.posX&&this.theEntity.posX<1703) {
+        if (this.theEntity instanceof EntityHorse&&this.theEntity.isEntityAlive()&&1697<this.theEntity.posX&&this.theEntity.posX<1703) {
             ci.cancel();
         }
     }

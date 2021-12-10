@@ -28,46 +28,50 @@ public class MC15SecondsRNGRiggerConfiguration {
     }
     public static String loadHorseManipPath() {
         File file=horseManipPathFile();
-        if (file!=null) {
-            try {
-                Scanner scanner=new Scanner(file);
-                ArrayList<Pair<Float,Vec3>> newPath=new ArrayList<Pair<Float,Vec3>>();
-                boolean failure=false;
-                int linei=0;
-                while (scanner.hasNext()) {
-                    String line=scanner.nextLine();
-                    linei++;
-                    if (line.isEmpty()) continue;
-                    String[] args=line.split(",");
-                    if (args.length!=4) {
-                        String message="Failed to parse at line "+linei;
-                        System.out.println("[15 Seconds RNG Rigger] [Level 15] "+message);
-                        scanner.close();
-                        return message;
-                    }
-                    try {
-                        float heightWhen=Float.parseFloat(args[0]);
-                        int destx=Integer.parseInt(args[1]);
-                        int desty=Integer.parseInt(args[2]);
-                        int destz=Integer.parseInt(args[3]);
-                        newPath.add(new HorseManipTimingPoint(heightWhen,destx,desty,destz));
-                    } catch (NumberFormatException e) {
-                        String message="Failed to parse at line "+linei;
-                        System.out.println("[15 Seconds RNG Rigger] [Level 15] "+message);
-                        e.printStackTrace();
-                        scanner.close();
-                        return message;
-                    }
-                }
-                if (!failure) horseManipPath=newPath;
+        if (file==null||!file.exists()) {
+            String message="Path file not found";
+            MC15SecondsRNGRiggerMod.logger.error("[Level 15] "+message);
+            return message;
+        }
+        Scanner scanner;
+        try {
+            scanner=new Scanner(file);
+        } catch (FileNotFoundException e) {
+            String message="Path file not found";
+            MC15SecondsRNGRiggerMod.logger.error("[Level 15] "+message);
+            e.printStackTrace();
+            return message;
+        }
+        ArrayList<Pair<Float,Vec3>> newPath=new ArrayList<Pair<Float,Vec3>>();
+        boolean failure=false;
+        int linei=0;
+        while (scanner.hasNext()) {
+            String line=scanner.nextLine();
+            linei++;
+            if (line.isEmpty()) continue;
+            String[] args=line.split(",");
+            if (args.length!=4) {
+                String message="Failed to parse at line "+linei;
+                MC15SecondsRNGRiggerMod.logger.error("[Level 15] "+message);
                 scanner.close();
-            } catch (FileNotFoundException e) {
-                String message="Path file not found";
-                System.out.println("[15 Seconds RNG Rigger] [Level 15] "+message);
+                return message;
+            }
+            try {
+                float heightWhen=Float.parseFloat(args[0]);
+                int destx=Integer.parseInt(args[1]);
+                int desty=Integer.parseInt(args[2]);
+                int destz=Integer.parseInt(args[3]);
+                newPath.add(new HorseManipTimingPoint(heightWhen,destx,desty,destz));
+            } catch (NumberFormatException e) {
+                String message="Failed to parse at line "+linei;
+                MC15SecondsRNGRiggerMod.logger.error("[Level 15] "+message);
                 e.printStackTrace();
+                scanner.close();
                 return message;
             }
         }
+        if (!failure) horseManipPath=newPath;
+        scanner.close();
         return "";
     }
 }
