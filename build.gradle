@@ -33,7 +33,7 @@ import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
-version = "0.1.1"
+version = "0.2.0-SNAPSHOT"
 group= "com.github.naruyoko.mc15secondsrngrigger" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "MC15SecondsRNGRigger"
 

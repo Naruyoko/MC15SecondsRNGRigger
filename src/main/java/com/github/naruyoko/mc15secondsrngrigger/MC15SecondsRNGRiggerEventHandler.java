@@ -13,6 +13,10 @@ public class MC15SecondsRNGRiggerEventHandler {
         MC15SecondsRNGRiggerMod.keybinds.onKeyPress(event);
     }
     @SubscribeEvent
+    public void onWorldLoad(WorldEvent.Load event) {
+        MC15SecondsRNGRiggerMod.resetEnderPearlCount();
+    }
+    @SubscribeEvent
     public void onWorldUnload(WorldEvent.Unload event) {
         MC15SecondsRNGRiggerMod.onWorldUnload(event);
     }

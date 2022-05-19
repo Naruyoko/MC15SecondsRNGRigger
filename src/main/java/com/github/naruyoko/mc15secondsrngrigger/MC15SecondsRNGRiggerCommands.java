@@ -23,6 +23,12 @@ public class MC15SecondsRNGRiggerCommands extends CommandBase {
             String r=MC15SecondsRNGRiggerConfiguration.loadHorseManipPath();
             if (r.isEmpty()) sender.addChatMessage(new ChatComponentText(EnumChatFormatting.GREEN+"Horse path loaded successfully."));
             else sender.addChatMessage(new ChatComponentText(EnumChatFormatting.RED+"Error: "+r));
+        } else if (args[0].equals("loadEnderPearlList")) {
+            String r=MC15SecondsRNGRiggerConfiguration.loadEnderPearlManipList();
+            if (r.isEmpty()) sender.addChatMessage(new ChatComponentText(EnumChatFormatting.GREEN+"Ender pearl manipulation list successfully."));
+            else sender.addChatMessage(new ChatComponentText(EnumChatFormatting.RED+"Error: "+r));
+        } else if (args[0].equals("resetEnderPearlCount")) {
+            MC15SecondsRNGRiggerMod.resetEnderPearlCount();
         } else {
             sender.addChatMessage(new ChatComponentText(EnumChatFormatting.RED+"Unknown command"));
         }
@@ -30,7 +36,7 @@ public class MC15SecondsRNGRiggerCommands extends CommandBase {
     @Override
     public List<String> addTabCompletionOptions(ICommandSender sender,String[] args,BlockPos pos) {
         if (args.length<1) return null;
-        if (args.length<=2) return getListOfStringsMatchingLastWord(args,"loadHorsePath");
+        if (args.length<=2) return getListOfStringsMatchingLastWord(args,"loadHorsePath","loadEnderPearlList","resetEnderPearlCount");
         return null;
     }
     @Override

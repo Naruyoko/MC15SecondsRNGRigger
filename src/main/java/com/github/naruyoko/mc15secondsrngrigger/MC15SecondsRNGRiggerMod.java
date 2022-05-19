@@ -22,6 +22,9 @@ public class MC15SecondsRNGRiggerMod {
     public static Logger logger=null;
     public static MC15SecondsRNGRiggerKeybinds keybinds;
     public static MC15SecondsRNGRiggerEventHandler eventHandler;
+    public static int enderPearlCount;
+    public static int enderPearlCoordCount;
+    public static final int COORDINATE_PER_THROW=3;
     @EventHandler
     public void preInit(FMLPreInitializationEvent event)
     {
@@ -32,6 +35,7 @@ public class MC15SecondsRNGRiggerMod {
     {
         keybinds=new MC15SecondsRNGRiggerKeybinds();
         eventHandler=new MC15SecondsRNGRiggerEventHandler();
+        MC15SecondsRNGRiggerConfiguration.init();
         MinecraftForge.EVENT_BUS.register(eventHandler);
         event.registerServerCommand(new MC15SecondsRNGRiggerCommands());
     }
@@ -41,5 +45,9 @@ public class MC15SecondsRNGRiggerMod {
     public static void outputErrorToChatAndLog(String message) {
         mc.thePlayer.addChatMessage(new ChatComponentText(EnumChatFormatting.RED+message));
         logger.error(message);
+    }
+    public static void resetEnderPearlCount() {
+        enderPearlCount=0;
+        enderPearlCoordCount=0;
     }
 }
